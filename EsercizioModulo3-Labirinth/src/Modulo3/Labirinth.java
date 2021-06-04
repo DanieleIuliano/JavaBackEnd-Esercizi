@@ -4,7 +4,7 @@ import java.util.Arrays;
 import java.util.Random;
 import java.util.Scanner;
 
-public class Main {
+public class Labirinth {
     public static void main(String[] args) {
         Scanner scan = new Scanner(System.in);
         System.out.println("Salve Giocatore scegli quale mappa giocare: 1(predefinita) 2(generata casualmente) ");
@@ -50,6 +50,8 @@ public class Main {
         char[][] vettoreRis = new char[dim][dim];
         for (int i = 0; i < dim; i++) {
             for (int j = 0; j < dim; j++) {
+                if(indiceRandomicoColonnaP == indiceRandomicoColonnaE && indiceRandomicoRigaP == indiceRandomicoColonnaP)
+                    return creaMappaGioco(dim);
                 if (i == indiceRandomicoRigaP && j == indiceRandomicoColonnaP) {
                     vettoreRis[i][j] = 'P';
                     continue;
