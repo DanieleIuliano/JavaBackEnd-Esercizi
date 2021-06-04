@@ -1,5 +1,6 @@
 package Modulo3;
 
+import java.util.Arrays;
 import java.util.Random;
 import java.util.Scanner;
 
@@ -8,13 +9,22 @@ public class Main {
         Scanner scan = new Scanner(System.in);
         System.out.println("Salve Giocatore scegli quale mappa giocare: 1(predefinita) 2(generata casualmente) ");
         int scelta = scan.nextInt();
-        if(scelta == 2) {
+        if (scelta == 2) {
             System.out.println("Inserisci dimensione mappa che vuoi giocare ");
             int dim = scan.nextInt();
             char[][] arrayMappa2 = creaMappaGioco(dim);
+            int[] posizioneP = salvaStatusP(arrayMappa2, dim);
+            System.out.println(Arrays.toString(posizioneP));
+            System.out.println("vuoi che lo risolva il pc? (1)si , il resto no");
+            int sceltaRisoluzione = scan.nextInt();
             stampaMatrice(arrayMappa2);
-            iniziaIlGioco(arrayMappa2, dim, dim);
-        }else {
+            if (sceltaRisoluzione == 1) {
+                iniziaIlGiocoAutomatico(arrayMappa2, posizioneP);
+            } else {
+                iniziaIlGioco(arrayMappa2, dim, dim);
+            }
+        } else {
+
             char[][] arrayMappa = {{'P', 'W', '-', '-', 'W'}, {'-', '-', 'W', '-', 'E'}, {'-', '-', 'W', '-', '-'}, {'-', '-', '-', '-', '-'}, {'W', '-', 'W', '-', 'W'}};
             stampaMatrice(arrayMappa);
             int dimRig = arrayMappa.length;
@@ -26,6 +36,7 @@ public class Main {
 
     /**
      * Metodo che crea una matrice di caratteri tra(WPE--) con controllo su P,E inseriti una sola volta
+     *
      * @param dim .
      * @return mappadigioco
      */
@@ -54,6 +65,51 @@ public class Main {
         return vettoreRis;
     }
 
+    /**
+     * metodo ricorsivo che permette la risoluzione automatica
+     *
+     * @param matrice        .
+     * @param nuovaPosizione .
+     * @return vero se ha trovato la 'E'
+     */
+    public static boolean spostaAutomatico(char[][] matrice, int[] nuovaPosizione) {
+        if (nuovaPosizione[0] < matrice.length && nuovaPosizione[1] < matrice[0].length && nuovaPosizione[0] >= 0 && nuovaPosizione[1] >= 0) {
+            if (matrice[nuovaPosizione[0]][nuovaPosizione[1]] == 'W')
+                return false;
+            if (matrice[nuovaPosizione[0]][nuovaPosizione[1]] == '/') {
+                return false;
+            }
+            if (matrice[nuovaPosizione[0]][nuovaPosizione[1]] == 'E') return true;
+            matrice[nuovaPosizione[0]][nuovaPosizione[1]] = '/';
+            if (spostaAutomatico(matrice, new int[]{nuovaPosizione[0] + 1, nuovaPosizione[1]}))
+                return true;
+            if (spostaAutomatico(matrice, new int[]{nuovaPosizione[0] - 1, nuovaPosizione[1]}))
+                return true;
+            if (spostaAutomatico(matrice, new int[]{nuovaPosizione[0], nuovaPosizione[1] + 1}))
+                return true;
+            if (spostaAutomatico(matrice, new int[]{nuovaPosizione[0], nuovaPosizione[1] - 1}))
+                return true;
+            matrice[nuovaPosizione[0]][nuovaPosizione[1]] = '-';
+        } else return false;
+        return false;
+    }
+
+    /**
+     * Il giovo viene iniziato in automatico e risolto
+     *
+     * @param matrice    .
+     * @param posizioneP .
+     */
+    public static void iniziaIlGiocoAutomatico(char[][] matrice, int[] posizioneP) {
+        boolean uscitaTrovata;
+        System.out.println();
+        do {
+            uscitaTrovata = spostaAutomatico(matrice, posizioneP);
+
+
+        } while (!uscitaTrovata);
+        System.out.println("Il pc ha trovato l'uscita!");
+    }
 
     /**
      * Metodo che data una matrice ti fa partire il gioco
@@ -124,7 +180,6 @@ public class Main {
             for (int j = 0; j < dimCol; j++) {
                 //controllo se ho trovato l'uscita la fine
                 if ((j + 1) < dimCol && matrice[i][j] == 'P' && matrice[i][j + 1] == 'E') {
-                    System.out.println("hai trovato l'uscita, Bravo!");
                     return true;
                 }
                 //controlla se ci sta un muro o finisce la matrice
@@ -208,11 +263,11 @@ public class Main {
         for (int i = 0; i < dimRig; i++) {
             for (int j = 0; j < dimCol; j++) {
                 //controllo se ho trovato l'uscita;
-                if (i > 0 && matrice[i][j] == 'P' && matrice[i - 1][j] == 'E') {
+                if ((i - 1) >= 0 && matrice[i][j] == 'P' && matrice[i - 1][j] == 'E') {
                     return true;
                 }
                 //controlla se ci sta un muro o finisce la matrice
-                if (i > 0 && matrice[i][j] == 'P' && matrice[i - 1][j] == '-' && matrice[i - 1][j] != 'W') {
+                if ((i - 1) >= 0 && matrice[i][j] == 'P' && matrice[i - 1][j] == '-' && matrice[i - 1][j] != 'W') {
                     temp = matrice[i][j];
                     matrice[i][j] = matrice[i - 1][j];
                     matrice[i - 1][j] = temp;
@@ -221,6 +276,26 @@ public class Main {
             }
         }
         return false;
+    }
+
+    /**
+     * Salva la posizione di P in un vetore
+     * @param matrice .
+     * @param dim .
+     * @return posizioneP.
+     */
+    public static int[] salvaStatusP(char[][] matrice, int dim) {
+        int[] posizioneP = new int[2];
+        for (int i = 0; i < dim; i++) {
+            for (int j = 0; j < dim; j++) {
+                if (matrice[i][j] == 'P') {
+                    posizioneP[0] = i;
+                    posizioneP[1] = j;
+                    return posizioneP;
+                }
+            }
+        }
+        return null;
     }
 
 }
