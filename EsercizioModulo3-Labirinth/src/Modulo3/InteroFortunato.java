@@ -1,7 +1,5 @@
 package Modulo3;
 
-import java.util.Arrays;
-
 public class InteroFortunato {
     public static void main(String[] args) {
         int[] array ={7,7,7,7,7,7,7,2,2,1};
