@@ -14,34 +14,28 @@ minMaxRecursive(array) deve stampare 40 e 130
 public class MinMaxRicorsivo {
     public static void main(String[] args) {
         int[] array = {40, 90, 130};
-        int max = 0;
-        max = maxRicorsivo(array, 0, max);
-        System.out.println(max);
-        int min = array[0];
-        min = minRicorsivo(array, 0, min);
-        System.out.println(min);
+        int max = maxRicorsivo(array, 0);
+
+        int min = minRicorsivo(array,0);
+        System.out.println("Massimo e minimo : " + max + " , " +min);
+
     }
 
-    public static int maxRicorsivo(int[] array, int pos, int max) {
-        if (pos >= array.length) {
-            return max;
+    //chiamata Ricorsiva
+    public static int maxRicorsivo(int[] array, int pos) {
+        if (pos == array.length - 1) {
+            return array[pos];
         }
-        if (array[pos] > max) {
-            max = array[pos];
-        }
+        return Math.max(array[pos], maxRicorsivo(array, pos + 1));
 
-        return maxRicorsivo(array, pos + 1, max);
     }
 
-    public static int minRicorsivo(int[] array, int pos, int min) {
-        if (pos >= array.length) {
-            return min;
+    public static int minRicorsivo(int[] array, int pos) {
+        if (pos == array.length - 1) {
+            return array[pos];
         }
-        if (array[pos] < min) {
-            min = array[pos];
-        }
+        return Math.min(array[pos], maxRicorsivo(array, pos + 1));
 
-        return minRicorsivo(array, pos + 1, min);
     }
 }
 
