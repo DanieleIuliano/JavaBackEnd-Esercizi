@@ -10,7 +10,7 @@ public class Main {
         lamp.click();
         lamp.click();
         lamp.click();
-        lamp.click();
+
 
     }
 }

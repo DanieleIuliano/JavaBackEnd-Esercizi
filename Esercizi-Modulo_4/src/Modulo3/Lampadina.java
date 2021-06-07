@@ -39,7 +39,7 @@ public class Lampadina {
             setStato(statoLampadina.spento);
             setContatore(contatore = contatore+1);
         }
-        if(contatore > 5){
+        if(contatore >= 5){
             System.out.println("Hai rotto la lampadina");
             setStato(statoLampadina.rotto);
         }
