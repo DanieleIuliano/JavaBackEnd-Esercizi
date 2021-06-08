@@ -85,8 +85,8 @@ public class Negozio {
      * @return .
      */
     public boolean checkProdotto(Prodotto prodotto) {
-        for (Prodotto value : prodotti) {
-            if (value.getNomeProdotto().equalsIgnoreCase(prodotto.getNomeProdotto())) {
+        for (int i = 0; i < prodotti.length; i++) {
+            if (prodotti[i].getNomeProdotto().equalsIgnoreCase(prodotto.getNomeProdotto())) {
                 System.out.println("Prodotto già presente");
                 return true;
             }
@@ -100,6 +100,6 @@ public class Negozio {
      * @param prodotto .
      */
     public void aumentaQuantita(Prodotto prodotto, int numeroAumento) {
-        prodotto.setQuantita(prodotto.getQuantita() + numeroAumento);
+       prodotto.setQuantita(prodotto.getQuantita()+numeroAumento);
     }
 }
