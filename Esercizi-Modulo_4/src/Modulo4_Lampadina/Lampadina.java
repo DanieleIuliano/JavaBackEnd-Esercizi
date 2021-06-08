@@ -1,8 +1,24 @@
-package Modulo3;
+package Modulo4_Lampadina;
 
 public class Lampadina {
     private statoLampadina stato;
     private int contatore;
+    static boolean corrente;
+
+
+    //costruttore
+    public Lampadina() {
+        setStato(statoLampadina.spento);
+        setCorrente(false);
+    }
+
+    public  boolean isCorrente() {
+        return corrente;
+    }
+
+    public void setCorrente(boolean corrente) {
+        Lampadina.corrente = corrente;
+    }
 
     public int getContatore() {
         return contatore;
@@ -10,11 +26,6 @@ public class Lampadina {
 
     public void setContatore(int contatore) {
         this.contatore = contatore;
-    }
-
-    //costruttore
-    public Lampadina() {
-        setStato(statoLampadina.spento);
     }
 
     // get stato della lampadina
@@ -29,7 +40,7 @@ public class Lampadina {
 
     //metodi
     public void click(){
-        if(getStato().equals(statoLampadina.spento)){
+        if(getStato().equals(statoLampadina.spento) && corrente){
             System.out.println("Hai acceso la lampadina");
             setStato(statoLampadina.acceso);
             setContatore(contatore = contatore+1);
@@ -45,11 +56,13 @@ public class Lampadina {
         }
     }
 
-    public void checkStatus(){
-        System.out.println(getStato());
+    public boolean checkStatusRotto(){
+        if(stato.equals(statoLampadina.rotto)){
+            return true;
+        }else return false;
     }
 }
 
-enum statoLampadina {
+ enum statoLampadina {
     acceso, spento, rotto;
 }
