@@ -9,7 +9,7 @@ public class Lampadina {
     //costruttore
     public Lampadina() {
         setStato(statoLampadina.spento);
-        setCorrente(false);
+        setCorrente(true);
     }
 
     public  boolean isCorrente() {
