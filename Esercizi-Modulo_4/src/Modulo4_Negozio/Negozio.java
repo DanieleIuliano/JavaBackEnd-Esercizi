@@ -3,14 +3,14 @@ package Modulo4_Negozio;
 import java.util.Arrays;
 
 public class Negozio {
-    Prodotto[] prodotti = new Prodotto[100];
+    Prodotto[] prodotti ;
     Cliente[] clienti;
 
-    //costruttori
-    public Negozio(Prodotto[] prodotti) {
-        this.prodotti = prodotti;
-    }
-
+    /**
+     * costruttore classe negozio
+     * @param prodotti .
+     * @param clienti .
+     */
     public Negozio(Prodotto[] prodotti, Cliente[] clienti) {
         this.prodotti = prodotti;
         this.clienti = clienti;
@@ -18,8 +18,8 @@ public class Negozio {
 
     public void stampaListaProdotti(){
         System.out.println("Lista Prodotti :");
-        for(int i = 0; i < prodotti.length;i++){
-            System.out.println(prodotti[i].getNomeProdotto() + " , Quantità: " + prodotti[i].getQuantita());
+        for (Prodotto prodotto : prodotti) {
+            System.out.println(prodotto.getNomeProdotto() + " , Quantità: " + prodotto.getQuantita());
         }
     }
 
@@ -57,7 +57,7 @@ public class Negozio {
     /**
      * metodo che serve ad aggiungere un prodotto
      *
-     * @param prodotto
+     * @param prodotto .
      */
     public void aggiungiProdotto(Prodotto prodotto) {
         if (prodotti == null) {
@@ -85,8 +85,8 @@ public class Negozio {
      * @return .
      */
     public boolean checkProdotto(Prodotto prodotto) {
-        for (int i = 0; i < prodotti.length; i++) {
-            if (prodotti[i].getNomeProdotto().equalsIgnoreCase(prodotto.getNomeProdotto())) {
+        for (Prodotto value : prodotti) {
+            if (value.getNomeProdotto().equalsIgnoreCase(prodotto.getNomeProdotto())) {
                 System.out.println("Prodotto già presente");
                 return true;
             }

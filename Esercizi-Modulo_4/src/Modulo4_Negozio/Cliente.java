@@ -13,6 +13,7 @@ public class Cliente {
         this.puntiCartaFedelta = puntiCartaFedelta;
     }
 
+
     public void acquistaProdotto(Negozio negozio, Prodotto prodotto) {
         Scanner scan = new Scanner(System.in);
         System.out.println("Quante ne vuoi comprare ");
