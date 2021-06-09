@@ -6,12 +6,15 @@ public class Main {
     //Primo programma che crea l'immagine grigia
         Shadow_Gray immagine1 = new Shadow_Gray();
         immagine1.Creashadow_Gray();
-        FiltriImmagini immagin2 = new FiltriImmagini();
-        immagin2.FiltroBiancoNero();
-        immagin2.filtroAspecchio();
-        immagin2.filtroGBR();
-        immagin2.filtroNegativo();
-        immagin2.filtroposterize(3);
-
+        FiltriImmagini immagine2 = new FiltriImmagini();
+        /*
+        immagine2.FiltroBiancoNero();
+        immagine2.filtroAspecchio();
+        immagine2.filtroGBR();
+        immagine2.filtroNegativo();
+        immagine2.filtroposterize(3);
+        */
+        GreenScreen immagine3 = new GreenScreen();
+        immagine3.SovrapponiImmagini();
     }
 }
