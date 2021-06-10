@@ -1,5 +1,11 @@
 package ModuloExtra;
 
+import javax.imageio.stream.FileImageOutputStream;
+import javax.imageio.stream.ImageOutputStream;
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
+
 public class Main {
 
     public static void main(String[] args) throws Exception {
@@ -16,5 +22,9 @@ public class Main {
         */
         GreenScreen immagine3 = new GreenScreen();
         immagine3.SovrapponiImmagini();
+
+
+
+
     }
 }
