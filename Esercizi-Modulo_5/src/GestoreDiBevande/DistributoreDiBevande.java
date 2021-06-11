@@ -62,6 +62,7 @@ public class DistributoreDiBevande {
                     System.out.println("Hai scelto il prodotto");
                     double nuovoImporto = getImporto() - prodotti[i].prezzo;
                     setImporto(nuovoImporto);
+                    rimuoviProdotto(prodotti[i],i);
                     return;
                 } else System.out.println("Non hai abbastanza soldi");
             } else System.out.println("codice Sbagliato");
@@ -75,10 +76,25 @@ public class DistributoreDiBevande {
         System.out.println(getImporto());
     }
 
+    /**
+     *  getResto: restituisce il resto dovuto e azzeri il saldo
+     */
     public void getResto() {
         if(getImporto() != 0){
             System.out.println("erogazione resto " + getImporto());
             setImporto(0);
         }else System.out.println("Non ci sta resto ");
+    }
+
+    /**
+     * rimuove il prodotto
+     * @param prodotto .
+     * @param indice .
+     */
+    private void rimuoviProdotto(Prodotti prodotto, int indice) {
+        Prodotti[] newProdotti = new Prodotti[prodotti.length - 1];
+        System.arraycopy(prodotti, 0, newProdotti, 0, indice);
+        System.arraycopy(prodotti, indice + 1, newProdotti, indice, prodotti.length - indice - 1);
+        prodotti = newProdotti;
     }
 }
