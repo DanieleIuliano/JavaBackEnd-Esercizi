@@ -64,12 +64,14 @@ public class Solution {
     public void rotate(int[] nums, int k) {
         for (int i = 0; i < nums.length; i++){
             int temp = 0;
-            if(i < k){
+            if(k+i < nums.length){
                 temp = nums[i];
                 nums[i] = nums[i+k];
                 nums[i+k] = temp;
             }else {
-                 
+                temp = nums[i];
+                nums[i] = nums[nums.length-k];
+                nums[nums.length-k] = temp;
             }
         }
     }

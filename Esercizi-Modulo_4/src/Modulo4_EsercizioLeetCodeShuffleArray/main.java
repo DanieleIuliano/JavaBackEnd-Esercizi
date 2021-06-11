@@ -10,5 +10,8 @@ public class main {
         soluzione.reset();
         int [] vettoreRandom = soluzione.shuffle();
         System.out.println(Arrays.toString(vettoreRandom));
+        int [] vettore_shift = num;
+        soluzione.rotate(vettore_shift,2);
+        System.out.println(Arrays.toString(vettore_shift));
     }
 }
