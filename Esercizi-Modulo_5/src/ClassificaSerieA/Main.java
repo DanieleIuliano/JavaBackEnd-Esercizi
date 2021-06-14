@@ -7,7 +7,8 @@ public class Main {
 
         Giocatore g3 = new Giocatore("Pazzo","Cane");
         Giocatore g4 = new Giocatore("Raf","bananone96");
-
+        System.out.println(g3.getIdGiocatore());
+        System.out.println(g4.getIdGiocatore());
         Giocatore[] giocatoriAtalanta = {g1,g2};
         Squadra s1 = new Squadra("Atalanta",giocatoriAtalanta);
 
@@ -16,6 +17,7 @@ public class Main {
 
         Squadra s3 = new Squadra("Milan",giocatoriAtalanta);
         Squadra s4 = new Squadra("Inter",giocatoriJuve);
+
         Squadra[] squadreSerieA = {s1,s2,s3,s4};
         Classifica serieA = new Classifica(squadreSerieA);
 

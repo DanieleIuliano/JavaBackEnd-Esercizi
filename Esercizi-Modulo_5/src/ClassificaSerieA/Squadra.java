@@ -1,12 +1,13 @@
 package ClassificaSerieA;
 
 public class Squadra {
-   private static int idSquadra;
-   private String nome;
-   Giocatore[] giocatori;
-   private int goalFatti;
-   private int goalSubiti;
-   private int punteggio;
+    int idSquadra;
+    private String nome;
+    static int prossimoIdSquadra = 1;
+    Giocatore[] giocatori;
+    private int goalFatti;
+    private int goalSubiti;
+    private int punteggio;
 
     public int getPunteggio() {
         return punteggio;
@@ -33,7 +34,7 @@ public class Squadra {
     }
 
     public Squadra(String nome, Giocatore[] giocatori) {
-        setIdSquadra(idSquadra);
+        setIdSquadra();
         this.nome = nome;
         this.giocatori = giocatori;
 
@@ -43,10 +44,11 @@ public class Squadra {
         return idSquadra;
     }
 
-    private static void setIdSquadra(int idSquadra) {
+    private  void setIdSquadra() {
         //accedo con il nome della classe perchè staticoo;
-        Squadra.idSquadra = Squadra.idSquadra+1;
+        idSquadra = prossimoIdSquadra++;
     }
+
     public String getNome() {
         return nome;
     }
