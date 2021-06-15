@@ -2,8 +2,10 @@ package ListaIterable;
 
 public interface Iterabile {
 
-    public Object next();
-    public boolean hasNext();
-    public void reset();
+    public Object get(int i);
+    public boolean contains(Object o);
+    public  int size();
+    boolean remove(int i);
+    void clear();
 
 }
