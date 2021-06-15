@@ -1,10 +1,15 @@
+import BotBase.BotBase;
+import BotListaSpesa.BotListaSpesa;
+import BotRandomMedia.BotRandomMedia;
+import com.botticelli.bot.Bot;
+import com.botticelli.messagereceiver.MessageReceiver;
+
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.net.SocketException;
 import java.net.UnknownHostException;
 import java.util.Scanner;
 
-import com.botticelli.messagereceiver.MessageReceiver;
 
 public class Main {
 
@@ -12,8 +17,8 @@ public class Main {
 
     public static void main(String[] args) throws FileNotFoundException, IllegalArgumentException, UnknownHostException, SocketException
     {
-        filePath = new File("").getAbsolutePath() + System.getProperty("file.separator");
-        File tokenFile = new File(filePath + "token.txt");
+        filePath = "C:\\Users\\Coldfierz\\Desktop\\Classroom java Developer Webtreeschool\\Repositori-esercizi-Github\\JavaBackEnd-Esercizi\\ModuloExtra-BotTelegram\\IlMioPrimoBot\\token.txt";
+        File tokenFile = new File(filePath);
         String token = "";
         try (Scanner s = new Scanner(tokenFile))
         {
@@ -23,7 +28,7 @@ public class Main {
             }
         }
 
-        Bot bot = new PrimoBot(token);
+        Bot bot = new BotListaSpesa(token);
         MessageReceiver mr = new MessageReceiver(bot, 500, 1);
         mr.ignoreEditedMessages();
         mr.start();
