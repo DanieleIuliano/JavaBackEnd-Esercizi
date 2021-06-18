@@ -1,12 +1,10 @@
 package BotListaSpesa;
 
 import com.botticelli.bot.Bot;
-import com.botticelli.bot.request.methods.MessageToSend;
 import com.botticelli.bot.request.methods.types.*;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Locale;
 
 public class BotListaSpesa extends Bot {
     ArrayList<Prodotti> listaSpesa = new ArrayList();
@@ -28,7 +26,7 @@ public class BotListaSpesa extends Bot {
             keyboard.add(line);
             ReplyKeyboardMarkupWithButtons replyKeyboard = new ReplyKeyboardMarkupWithButtons(keyboard);
             replyKeyboard.setResizeKeyboard(true);
-            
+
 
     }
 
