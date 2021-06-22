@@ -57,9 +57,19 @@ public class Cliente implements Comparable<Cliente> {
 
     @Override
     public int compareTo(Cliente o) {
-        if(uniqueID.equals(o.getUniqueID())){
+
+        if (getEtà() > o.getEtà())
+
+            return -1;
+
+
+        if (getEtà() < o.getEtà())
+
             return 1;
-        }else
-        return 0;
+
+        else
+
+            return 0;
+
     }
 }

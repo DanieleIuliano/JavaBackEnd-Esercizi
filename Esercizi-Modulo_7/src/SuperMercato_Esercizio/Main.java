@@ -9,9 +9,8 @@ public class Main {
         sisa.addCliente(num1);
         sisa.addCliente(num2);
         sisa.addCliente(num3);
-        sisa.stampaCoda();
         sisa.removeCliente();
-        sisa.stampaCoda();
+
 
     }
 }
